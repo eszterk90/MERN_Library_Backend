@@ -8,8 +8,7 @@
     "dev": "nodemon server.js",
     "server": "node server.js",
     "userSeed": "node './seeds/userSeedScript.js'",
-    "bookSeed": "node './seeds/bookSeedScript.js'",
-    "root": "build/"
+    "bookSeed": "node './seeds/bookSeedScript.js'"
   },
   "compilerOptions": {
     "target": "es5",
