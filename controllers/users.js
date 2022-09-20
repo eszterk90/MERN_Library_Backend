@@ -24,7 +24,7 @@ const createUser = (req, res) => {
                     let random = Math.random().toString(36).slice(-8);
                     Verification.create({authId: createdUser._id, secretKey: random})
                     .then(() => {
-                        sendMail(createdUser.email, 'verify email', `Hello, This email address: ${createdUser.email} is used to register in Mock Library. To verify your account please click on <a href="https://library-backend-1.herokuapp.com/user/verify?authId=${createdUser._id}&secretKey=${random}">this link</a>
+                        sendMail(createdUser.email, 'verify email', `Hello, This email address: ${createdUser.email} is used to register in Mock Library. To verify your account please click on <a href="https://mock-library.herokuapp.com/user/verify?authId=${createdUser._id}&secretKey=${random}">this link</a>
                         Thanks,
                         Your Library Team.`)
                         .then(result => {res.json('Please, check your emails and verify your email address'); console.log(result)}).catch(error => console.log(error))
