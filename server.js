@@ -9,12 +9,11 @@ const session = require('express-session');
 const userRouter = require('./routes/user.routes');
 const productRouter = require('./routes/product.routes');
 const path = require('path');
-const {checkLoggedIn} = require('./middleware/authentication');
-const { truncateSync } = require('fs');
+const {checkLoggedIn} = require('./middleware/authentication')
 
 app.use(session({
   secret: process.env.SESSION,
-  resave: truncateSync,
+  resave: true,
   saveUninitialized: true,
   cookie: {
     maxAge: 1000*60*60*12
