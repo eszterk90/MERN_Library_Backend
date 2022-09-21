@@ -31,7 +31,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(cors());
 
-// app.use('/', express.static(path.join(__dirname, '../mern_library/client/build')))
+app.use('/', express.static(path.join(__dirname, '../mern_library/client/build')))
 
 app.get('/', (req, res) => {
   res.json('server is running')
@@ -39,9 +39,9 @@ app.get('/', (req, res) => {
 app.use('/user', userRouter);
 app.use('/books', checkLoggedIn, productRouter)
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../mern_library/client/build', 'index.html'))
-// })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../mern_library/client/build/index.html'))
+})
 
 app.listen(PORT, ()=>{
     console.log(`The Server is running Successfully in ${PORT} .....`);
