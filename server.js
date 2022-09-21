@@ -9,16 +9,17 @@ const session = require('express-session');
 const userRouter = require('./routes/user.routes');
 const productRouter = require('./routes/product.routes');
 const path = require('path');
-const {checkLoggedIn} = require('./middleware/authentication')
+const {checkLoggedIn} = require('./middleware/authentication');
+const { truncateSync } = require('fs');
 
 app.use(session({
   secret: process.env.SESSION,
-  resave: false,
+  resave: truncateSync,
   saveUninitialized: true,
   cookie: {
     maxAge: 1000*60*60*12
   },
-  // proxy: true
+  proxy: true
 }));
 
 mongoose.connect(process.env.USER_COLLECTION_LINK)
