@@ -33,7 +33,9 @@ app.use(cors());
 
 // app.use('/', express.static(path.join(__dirname, '../mern_library/client/build')))
 
-
+app.get('/', (req, res) => {
+  res.json('server is running')
+})
 app.use('/user', userRouter);
 app.use('/books', checkLoggedIn, productRouter)
 
