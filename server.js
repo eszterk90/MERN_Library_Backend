@@ -13,12 +13,12 @@ const {checkLoggedIn} = require('./middleware/authentication')
 
 app.use(session({
   secret: process.env.SESSION,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     maxAge: 1000*60*60*12
   },
-  proxy: true
+  // proxy: true
 }));
 
 mongoose.connect(process.env.USER_COLLECTION_LINK)
