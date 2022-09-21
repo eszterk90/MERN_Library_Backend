@@ -6,20 +6,26 @@ const PORT = process.env.PORT;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const userRouter = require('./routes/user.routes');
 const productRouter = require('./routes/product.routes');
 const path = require('path');
 const {checkLoggedIn} = require('./middleware/authentication')
 
+app.set('trust proxy', 1)
+
 app.use(session({
   secret: process.env.SESSION,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     maxAge: 1000*60*60*12,
-    sameSite: 'none'
+    secure: true
   },
-  proxy: true
+  proxy: true,
+  // store: new MongoStore({
+
+  // })
 }));
 
 mongoose.connect(process.env.USER_COLLECTION_LINK)
