@@ -12,7 +12,6 @@ const productRouter = require('./routes/product.routes');
 const path = require('path');
 const {checkLoggedIn} = require('./middleware/authentication')
 
-app.set('trust proxy', 1)
 
 app.use(session({
   secret: process.env.SESSION,
@@ -20,12 +19,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     maxAge: 1000*60*60*12,
-    secure: true
   },
   proxy: true,
-  // store: new MongoStore({
-
-  // })
 }));
 
 mongoose.connect(process.env.USER_COLLECTION_LINK)
