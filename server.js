@@ -5,13 +5,14 @@ const app = express();
 const PORT = process.env.PORT;
 const mongoose = require('mongoose');
 const cors = require('cors');
-const session = require('express-session');
+// const session = require('express-session');
+const cookieSession = require('cookie-session');
 const userRouter = require('./routes/user.routes');
 const productRouter = require('./routes/product.routes');
 const path = require('path');
 const {checkLoggedIn} = require('./middleware/authentication')
 
-app.use(session({
+app.use(cookieSession({
   secret: process.env.SESSION,
   resave: true,
   saveUninitialized: true,

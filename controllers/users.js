@@ -3,7 +3,7 @@ const Verification = require('../models/verification.model')
 const {sendMail} = require('../models/email.model');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 // const { AxiosError } = require('axios');
 const {validationResult} = require('express-validator')
 
@@ -56,18 +56,19 @@ const login = (req, res) => {
     console.log(req.body)
     User.findOne({email: currentUserData.email})
         .then(result => {
+            console.log('this is result', result);
         if(result !== null) {
             console.log(result)
             if(result.verified === true) {
                 bcrypt.compare(currentUserData.password, result.password, (err, data) => {
                 if(data){
                     // const jwtToken = jwt.sign({result}, process.env.session, { algorithm: 'HS256', expiresIn: '1h'});
-                    // req.session.token = jwtToken;
+                    // req.session.token = jwtToken
                     req.session.user=result;
                     req.session.save();
                     res.json({
                         message: 'Password is valid',
-                        result
+                        result,
                         // jwtToken
                         })
                     } else {
@@ -81,7 +82,7 @@ const login = (req, res) => {
                 
         }
         else {
-            res.json('Please provide correct email address')
+            res.json({message: 'Please provide correct email address'})
         }
             
         })
