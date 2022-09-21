@@ -29,17 +29,17 @@ mongoose.connect(process.env.USER_COLLECTION_LINK)
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-// app.use(cors());
+app.use(cors());
 
-app.use('/', express.static(path.join(__dirname, '../mern_library/client/build')))
+// app.use('/', express.static(path.join(__dirname, '../mern_library/client/build')))
 
 
 app.use('/user', userRouter);
 app.use('/books', checkLoggedIn, productRouter)
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../mern_library/client/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../mern_library/client/build', 'index.html'))
+// })
 
 app.listen(PORT, ()=>{
     console.log(`The Server is running Successfully in ${PORT} .....`);
