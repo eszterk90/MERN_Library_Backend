@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
   res.json('server is running')
 })
 app.use('/user', userRouter);
-app.use('/books', checkLoggedIn, productRouter)
+app.use('/books', productRouter)
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../mern_library/client/build/index.html'))
