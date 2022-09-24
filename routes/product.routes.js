@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {faker} = require('@faker-js/faker');
 const {findAllBooks, getSingleBook, borrowBook, returnBook, getBookShelf} = require('../controllers/books')
-const {checkLoggedIn} = require('../middleware/authentication')
+
 
 
 router.get('/all', findAllBooks)
