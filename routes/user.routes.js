@@ -19,7 +19,7 @@ router.post('/login',
     body('password').isLength({ min: 6}).withMessage("Your password contains at least six characters")],
     login
 );
-router.get('/logout', logout)
+router.get('/logout', checkLoggedIn, logout)
     
 
 module.exports = router;
