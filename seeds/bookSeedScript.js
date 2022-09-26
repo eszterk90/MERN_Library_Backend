@@ -23,7 +23,7 @@ async function seedDB() {
         
         for(let i = 0; i < queries.length; i++){
             // let randomNum = Math.floor(Math.random() * (bookCovers.length -1));
-          const book = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${queries[i]}&key=AIzaSyBaEcAfYW3enT7jcbA2_D9cKtygM4XCOkA`)
+          const book = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${queries[i]}&key=${processs.env.google_api}`)
             .then((result) => {
                 const booksWithCover = result.data.items.filter(book => book.volumeInfo.imageLinks && book.volumeInfo.description)
                 booksWithCover.map((book, index) => {
